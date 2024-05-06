@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>LearnCloud</title>
+    </head>
+    <body>
+        <h1>LearnCloud</h1>
+        {% if wordcloud_image %}
+        <img src="data:image/png;base64,{{ wordcloud_image }}" alt="Word Cloud">
+        {% endif %}
+        <h2>学びたいことを投稿しよう！</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">投稿する！</button>
+        </form>
+        <h2>投稿一覧</h2>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>学びたいこと</th>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td>{{ post.id }}</td>
+                    <td>{{ post.skill_name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
