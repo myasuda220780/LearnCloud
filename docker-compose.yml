@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  learncloud:
+    build:
+      context: ./learncloud
+    image: learncloud:latest
+    container_name: learncloud
+    hostname: learncloud
+    ports:
+      - 8000:8000
+    command: /venv/bin/python /manage.py runserver 0:8000
