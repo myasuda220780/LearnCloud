@@ -1,0 +1,12 @@
+FROM ubuntu:jammy-20240427
+
+COPY ./manage.py /manage.py
+COPY ./app /app
+COPY ./learncloud /learncloud
+COPY ./requirements.txt /requirements.txt
+
+RUN apt update -y
+RUN apt install -y python3-venv
+RUN python3 -m venv /venv
+RUN /venv/bin/pip install -r /requirements.txt
+RUN /venv/bin/python /manage.py migrate
